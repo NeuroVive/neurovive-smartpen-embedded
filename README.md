@@ -49,9 +49,11 @@ Sensor Acquisition → ADC1 sampling @ 1 kHz → DC offset removal
 
 ## 2. Block Diagram
 
-📄 **`Schematic_Block_Diagram.png`**
+![System block diagram showing Power Management, Sensor Network, and ESP32-S3 SuperMini swimlanes](./Schematic_Block_Diagram.png)
 
-This is the high-level system block diagram and is the best starting point for understanding signal/power flow before reading the full schematic. It is organized into three swimlanes, left to right:
+*Figure 1 — High-level system block diagram (`Schematic_Block_Diagram.png`).*
+
+This is the best starting point for understanding signal/power flow before reading the full schematic. It is organized into three swimlanes, left to right:
 
 - **Power Management** — the 3.7 V LiPo feeds the ESP32-S3's onboard LDO, which produces the regulated 3.3 V rail. This rail fans out to power every sensor (all three FSRs and the MPU-6050) and shares a common GND return.
 - **Sensor Network** — shows the three FSR channels (Tip FSR-400, Grip FSR-402 A, Grip FSR-402 B), each annotated with its GPIO + RC filter stage, plus the MPU-6050 IMU on its I2C bus (SDA → GPIO 8, SCL → GPIO 9).
@@ -63,7 +65,9 @@ This diagram correctly labels the MCU as **ESP32-S3** throughout.
 
 ## 3. Schematic
 
-📄 **`schematic.png`** *(EasyEDA, "Smart Pen", Schematic2, v1.0)*
+![Component-level EasyEDA schematic showing ESP32 MCU, MPU-6050 IMU, and three FSR voltage-divider sub-circuits](./schematic.png)
+
+*Figure 2 — Full component-level schematic (`schematic.png`), EasyEDA "Smart Pen," Schematic2, v1.0.*
 
 This is the component-level electrical schematic, laid out in a 6-column × 4-row grid (A4):
 
