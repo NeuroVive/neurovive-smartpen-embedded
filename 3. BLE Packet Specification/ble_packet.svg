@@ -1,0 +1,314 @@
+<svg width="900" viewBox="0 0 900 1260" xmlns="http://www.w3.org/2000/svg" font-family="monospace, sans-serif">
+
+  <!-- Background -->
+  <rect width="900" height="1260" fill="#0d1117"/>
+
+  <!-- Title bar -->
+  <rect x="20" y="16" width="860" height="44" rx="8" fill="#1f2d4a"/>
+  <text x="450" y="44" text-anchor="middle" font-size="16" font-weight="bold" fill="#93c5fd">BLE Packet — Smart Pen (ESP32-C3 + MPU6050 + Tri-FSR)</text>
+
+  <!-- Column headers -->
+  <rect x="20" y="68" width="860" height="28" fill="#161b22"/>
+  <text x="46"  y="87" font-size="12" font-weight="bold" fill="#8b949e">Position</text>
+  <text x="138" y="87" font-size="12" font-weight="bold" fill="#8b949e">Size</text>
+  <text x="186" y="87" font-size="12" font-weight="bold" fill="#8b949e">Hex</text>
+  <text x="330" y="87" font-size="12" font-weight="bold" fill="#8b949e">Field</text>
+  <text x="570" y="87" font-size="12" font-weight="bold" fill="#8b949e">Value / Notes</text>
+  <line x1="20" y1="96" x2="880" y2="96" stroke="#30363d" stroke-width="1"/>
+
+  <!-- SECTION: Header -->
+  <rect x="20" y="96" width="860" height="22" fill="#1a1f2e"/>
+  <text x="30" y="112" font-size="11" fill="#6e7681">── Header ──</text>
+
+  <!-- [00] pkt_type -->
+  <rect x="20" y="118" width="860" height="30" fill="#161b22"/>
+  <text x="46"  y="138" font-size="12" fill="#e6edf3">[00]</text>
+  <text x="138" y="138" font-size="12" fill="#e6edf3">1</text>
+  <text x="186" y="138" font-size="12" fill="#79c0ff" font-family="monospace">01</text>
+  <text x="330" y="138" font-size="12" fill="#e6edf3">pkt_type</text>
+  <text x="570" y="138" font-size="12" fill="#8b949e">1 = sensor data frame</text>
+
+  <!-- [01] seq_num -->
+  <rect x="20" y="148" width="860" height="30" fill="#0d1117"/>
+  <text x="46"  y="168" font-size="12" fill="#e6edf3">[01]</text>
+  <text x="138" y="168" font-size="12" fill="#e6edf3">1</text>
+  <text x="186" y="168" font-size="12" fill="#79c0ff" font-family="monospace">A4</text>
+  <text x="330" y="168" font-size="12" fill="#e6edf3">seq_num</text>
+  <text x="570" y="168" font-size="12" fill="#8b949e">164 — rollover counter, detects dropped packets</text>
+
+  <!-- [02..05] timestamp_ms -->
+  <rect x="20" y="178" width="860" height="30" fill="#161b22"/>
+  <text x="46"  y="198" font-size="12" fill="#e6edf3">[02..05]</text>
+  <text x="138" y="198" font-size="12" fill="#e6edf3">4</text>
+  <text x="186" y="198" font-size="12" fill="#79c0ff" font-family="monospace">00 00 27 10</text>
+  <text x="330" y="198" font-size="12" fill="#e6edf3">timestamp_ms</text>
+  <text x="570" y="198" font-size="12" fill="#8b949e">10,000 ms — millis() since boot (uint32 BE)</text>
+
+  <!-- SECTION: IMU -->
+  <rect x="20" y="208" width="860" height="22" fill="#1a1f2e"/>
+  <text x="30" y="224" font-size="11" fill="#6e7681">── MPU6050 raw (I²C, 16-bit signed big-endian) ──</text>
+
+  <!-- [06..07] ax_raw -->
+  <rect x="20" y="230" width="860" height="30" fill="#0d1117"/>
+  <rect x="20" y="230" width="4" height="30" fill="#388bfd"/>
+  <text x="46"  y="250" font-size="12" fill="#e6edf3">[06..07]</text>
+  <text x="138" y="250" font-size="12" fill="#e6edf3">2</text>
+  <text x="186" y="250" font-size="12" fill="#79c0ff" font-family="monospace">3F 80</text>
+  <text x="330" y="250" font-size="12" fill="#e6edf3">ax_raw</text>
+  <text x="570" y="250" font-size="12" fill="#8b949e">16,256 LSB — accel X (±2g range → ÷16384 = g)</text>
+
+  <!-- [08..09] ay_raw -->
+  <rect x="20" y="260" width="860" height="30" fill="#161b22"/>
+  <rect x="20" y="260" width="4" height="30" fill="#388bfd"/>
+  <text x="46"  y="280" font-size="12" fill="#e6edf3">[08..09]</text>
+  <text x="138" y="280" font-size="12" fill="#e6edf3">2</text>
+  <text x="186" y="280" font-size="12" fill="#79c0ff" font-family="monospace">00 28</text>
+  <text x="330" y="280" font-size="12" fill="#e6edf3">ay_raw</text>
+  <text x="570" y="280" font-size="12" fill="#8b949e">40 LSB — accel Y</text>
+
+  <!-- [10..11] az_raw -->
+  <rect x="20" y="290" width="860" height="30" fill="#0d1117"/>
+  <rect x="20" y="290" width="4" height="30" fill="#388bfd"/>
+  <text x="46"  y="310" font-size="12" fill="#e6edf3">[10..11]</text>
+  <text x="138" y="310" font-size="12" fill="#e6edf3">2</text>
+  <text x="186" y="310" font-size="12" fill="#79c0ff" font-family="monospace">FF D0</text>
+  <text x="330" y="310" font-size="12" fill="#e6edf3">az_raw</text>
+  <text x="570" y="310" font-size="12" fill="#8b949e">-48 LSB — accel Z (two's complement)</text>
+
+  <!-- [12..13] gx_raw -->
+  <rect x="20" y="320" width="860" height="30" fill="#161b22"/>
+  <rect x="20" y="320" width="4" height="30" fill="#388bfd"/>
+  <text x="46"  y="340" font-size="12" fill="#e6edf3">[12..13]</text>
+  <text x="138" y="340" font-size="12" fill="#e6edf3">2</text>
+  <text x="186" y="340" font-size="12" fill="#79c0ff" font-family="monospace">01 2C</text>
+  <text x="330" y="340" font-size="12" fill="#e6edf3">gx_raw</text>
+  <text x="570" y="340" font-size="12" fill="#8b949e">300 LSB — gyro X (±250°/s → ÷131 = °/s)</text>
+
+  <!-- [14..15] gy_raw -->
+  <rect x="20" y="350" width="860" height="30" fill="#0d1117"/>
+  <rect x="20" y="350" width="4" height="30" fill="#388bfd"/>
+  <text x="46"  y="370" font-size="12" fill="#e6edf3">[14..15]</text>
+  <text x="138" y="370" font-size="12" fill="#e6edf3">2</text>
+  <text x="186" y="370" font-size="12" fill="#79c0ff" font-family="monospace">FF A8</text>
+  <text x="330" y="370" font-size="12" fill="#e6edf3">gy_raw</text>
+  <text x="570" y="370" font-size="12" fill="#8b949e">-88 LSB — gyro Y</text>
+
+  <!-- [16..17] gz_raw -->
+  <rect x="20" y="380" width="860" height="30" fill="#161b22"/>
+  <rect x="20" y="380" width="4" height="30" fill="#388bfd"/>
+  <text x="46"  y="400" font-size="12" fill="#e6edf3">[16..17]</text>
+  <text x="138" y="400" font-size="12" fill="#e6edf3">2</text>
+  <text x="186" y="400" font-size="12" fill="#79c0ff" font-family="monospace">00 50</text>
+  <text x="330" y="400" font-size="12" fill="#e6edf3">gz_raw</text>
+  <text x="570" y="400" font-size="12" fill="#8b949e">80 LSB — gyro Z</text>
+
+  <!-- SECTION: Orientation -->
+  <rect x="20" y="410" width="860" height="22" fill="#1a1f2e"/>
+  <text x="30" y="426" font-size="11" fill="#6e7681">── Computed orientation (on-device, ×100 integer encoding) ──</text>
+
+  <!-- [18..19] pitch_x100 -->
+  <rect x="20" y="432" width="860" height="30" fill="#0d1117"/>
+  <rect x="20" y="432" width="4" height="30" fill="#a371f7"/>
+  <text x="46"  y="452" font-size="12" fill="#e6edf3">[18..19]</text>
+  <text x="138" y="452" font-size="12" fill="#e6edf3">2</text>
+  <text x="186" y="452" font-size="12" fill="#79c0ff" font-family="monospace">06 40</text>
+  <text x="330" y="452" font-size="12" fill="#e6edf3">pitch_x100</text>
+  <text x="570" y="452" font-size="12" fill="#8b949e">1600 → 16.00° (pen tilt, forward/back)</text>
+
+  <!-- [20..21] roll_x100 -->
+  <rect x="20" y="462" width="860" height="30" fill="#161b22"/>
+  <rect x="20" y="462" width="4" height="30" fill="#a371f7"/>
+  <text x="46"  y="482" font-size="12" fill="#e6edf3">[20..21]</text>
+  <text x="138" y="482" font-size="12" fill="#e6edf3">2</text>
+  <text x="186" y="482" font-size="12" fill="#79c0ff" font-family="monospace">FF 9C</text>
+  <text x="330" y="482" font-size="12" fill="#e6edf3">roll_x100</text>
+  <text x="570" y="482" font-size="12" fill="#8b949e">-100 → -1.00° (pen rotation, left/right)</text>
+
+  <!-- SECTION: FSR -->
+  <rect x="20" y="492" width="860" height="22" fill="#1a1f2e"/>
+  <text x="30" y="508" font-size="11" fill="#6e7681">── FSR sensors — 3 independent channels ──</text>
+
+  <!-- [22..23] tip_fsr400_raw -->
+  <rect x="20" y="514" width="860" height="30" fill="#0f2218"/>
+  <rect x="20" y="514" width="4" height="30" fill="#3fb950"/>
+  <text x="46"  y="534" font-size="12" fill="#e6edf3">[22..23]</text>
+  <text x="138" y="534" font-size="12" fill="#e6edf3">2</text>
+  <text x="186" y="534" font-size="12" fill="#79c0ff" font-family="monospace">01 F4</text>
+  <text x="330" y="534" font-size="12" fill="#e6edf3">tip_fsr400_raw</text>
+  <text x="570" y="534" font-size="12" fill="#8b949e">500 ADC — raw axial tip pressure (FSR-400)</text>
+
+  <!-- [24..25] tip_force_gram_x10 -->
+  <rect x="20" y="544" width="860" height="30" fill="#0a1a10"/>
+  <rect x="20" y="544" width="4" height="30" fill="#3fb950"/>
+  <text x="46"  y="564" font-size="12" fill="#e6edf3">[24..25]</text>
+  <text x="138" y="564" font-size="12" fill="#e6edf3">2</text>
+  <text x="186" y="564" font-size="12" fill="#79c0ff" font-family="monospace">00 C8</text>
+  <text x="330" y="564" font-size="12" fill="#e6edf3">tip_force_gram_x10</text>
+  <text x="570" y="564" font-size="12" fill="#8b949e">200 → 20.0 g (calibrated via LUT)</text>
+
+  <!-- [26..27] grip_a_fsr402_raw -->
+  <rect x="20" y="574" width="860" height="30" fill="#1f1208"/>
+  <rect x="20" y="574" width="4" height="30" fill="#f78166"/>
+  <text x="46"  y="594" font-size="12" fill="#e6edf3">[26..27]</text>
+  <text x="138" y="594" font-size="12" fill="#e6edf3">2</text>
+  <text x="186" y="594" font-size="12" fill="#79c0ff" font-family="monospace">xx xx</text>
+  <text x="330" y="594" font-size="12" fill="#e6edf3">grip_a_fsr402_raw</text>
+  <text x="570" y="594" font-size="12" fill="#8b949e">ADC — finger grip sensor A (GPIO 2)</text>
+
+  <!-- [28..29] grip_b_fsr402_raw -->
+  <rect x="20" y="604" width="860" height="30" fill="#170e05"/>
+  <rect x="20" y="604" width="4" height="30" fill="#f78166"/>
+  <text x="46"  y="624" font-size="12" fill="#e6edf3">[28..29]</text>
+  <text x="138" y="624" font-size="12" fill="#e6edf3">2</text>
+  <text x="186" y="624" font-size="12" fill="#79c0ff" font-family="monospace">xx xx</text>
+  <text x="330" y="624" font-size="12" fill="#e6edf3">grip_b_fsr402_raw</text>
+  <text x="570" y="624" font-size="12" fill="#8b949e">ADC — finger grip sensor B (GPIO 3)</text>
+
+  <!-- [30..31] grip_mean_x10 -->
+  <rect x="20" y="634" width="860" height="30" fill="#1f1208"/>
+  <rect x="20" y="634" width="4" height="30" fill="#f78166"/>
+  <text x="46"  y="654" font-size="12" fill="#e6edf3">[30..31]</text>
+  <text x="138" y="654" font-size="12" fill="#e6edf3">2</text>
+  <text x="186" y="654" font-size="12" fill="#79c0ff" font-family="monospace">xx xx</text>
+  <text x="330" y="654" font-size="12" fill="#e6edf3">grip_mean_x10</text>
+  <text x="570" y="654" font-size="12" fill="#8b949e">avg(A,B) calibrated → grams ×10</text>
+
+  <!-- SECTION: DSP -->
+  <rect x="20" y="664" width="860" height="22" fill="#1a1f2e"/>
+  <text x="30" y="680" font-size="11" fill="#6e7681">── On-device DSP outputs (1024-pt FFT, 1 Hz update) ──</text>
+
+  <!-- [32..33] tremor_dom_freq_x100 -->
+  <rect x="20" y="686" width="860" height="30" fill="#1b0f2e"/>
+  <rect x="20" y="686" width="4" height="30" fill="#bc8cff"/>
+  <text x="46"  y="706" font-size="12" fill="#e6edf3">[32..33]</text>
+  <text x="138" y="706" font-size="12" fill="#e6edf3">2</text>
+  <text x="186" y="706" font-size="12" fill="#79c0ff" font-family="monospace">xx xx</text>
+  <text x="330" y="706" font-size="12" fill="#e6edf3">tremor_dom_freq_x100</text>
+  <text x="570" y="706" font-size="12" fill="#8b949e">e.g. 503 → 5.03 Hz (FFT peak, 3.5–6.5 Hz band)</text>
+
+  <!-- [34..35] tremor_rms_x1000 -->
+  <rect x="20" y="716" width="860" height="30" fill="#130b22"/>
+  <rect x="20" y="716" width="4" height="30" fill="#bc8cff"/>
+  <text x="46"  y="736" font-size="12" fill="#e6edf3">[34..35]</text>
+  <text x="138" y="736" font-size="12" fill="#e6edf3">2</text>
+  <text x="186" y="736" font-size="12" fill="#79c0ff" font-family="monospace">01 F4</text>
+  <text x="330" y="736" font-size="12" fill="#e6edf3">tremor_rms_x1000</text>
+  <text x="570" y="736" font-size="12" fill="#8b949e">500 → 0.500 m/s² RMS amplitude</text>
+
+  <!-- [36..37] jerk_mag_x100 -->
+  <rect x="20" y="746" width="860" height="30" fill="#1b0f2e"/>
+  <rect x="20" y="746" width="4" height="30" fill="#bc8cff"/>
+  <text x="46"  y="766" font-size="12" fill="#e6edf3">[36..37]</text>
+  <text x="138" y="766" font-size="12" fill="#e6edf3">2</text>
+  <text x="186" y="766" font-size="12" fill="#79c0ff" font-family="monospace">03 E8</text>
+  <text x="330" y="766" font-size="12" fill="#e6edf3">jerk_mag_x100</text>
+  <text x="570" y="766" font-size="12" fill="#8b949e">1000 → 10.00 m/s³ (rate of accel change)</text>
+
+  <!-- SECTION: Pen state -->
+  <rect x="20" y="776" width="860" height="22" fill="#1a1f2e"/>
+  <text x="30" y="792" font-size="11" fill="#6e7681">── Pen state ──</text>
+
+  <!-- [38] pen_state -->
+  <rect x="20" y="798" width="860" height="30" fill="#161b22"/>
+  <text x="46"  y="818" font-size="12" fill="#e6edf3">[38]</text>
+  <text x="138" y="818" font-size="12" fill="#e6edf3">1</text>
+  <text x="186" y="818" font-size="12" fill="#79c0ff" font-family="monospace">01</text>
+  <text x="330" y="818" font-size="12" fill="#e6edf3">pen_state</text>
+  <text x="570" y="818" font-size="12" fill="#8b949e">0 = lifted, 1 = writing (derived from tip FSR-400)</text>
+
+  <!-- [39] lift_count -->
+  <rect x="20" y="828" width="860" height="30" fill="#0d1117"/>
+  <text x="46"  y="848" font-size="12" fill="#e6edf3">[39]</text>
+  <text x="138" y="848" font-size="12" fill="#e6edf3">1</text>
+  <text x="186" y="848" font-size="12" fill="#79c0ff" font-family="monospace">03</text>
+  <text x="330" y="848" font-size="12" fill="#e6edf3">lift_count</text>
+  <text x="570" y="848" font-size="12" fill="#8b949e">3 pen lifts within this 1 s window</text>
+
+  <!-- SECTION: Calibration -->
+  <rect x="20" y="858" width="860" height="22" fill="#1a1f2e"/>
+  <text x="30" y="874" font-size="11" fill="#6e7681">── IMU calibration offsets — all 6 axes (signed int16 BE) ──</text>
+
+  <!-- cal fields -->
+  <rect x="20" y="880" width="860" height="30" fill="#161b22"/>
+  <rect x="20" y="880" width="4" height="30" fill="#d29922"/>
+  <text x="46"  y="900" font-size="12" fill="#e6edf3">[40..41]</text>
+  <text x="138" y="900" font-size="12" fill="#e6edf3">2</text>
+  <text x="186" y="900" font-size="12" fill="#79c0ff" font-family="monospace">xx xx</text>
+  <text x="330" y="900" font-size="12" fill="#e6edf3">cal_ax</text>
+  <text x="570" y="900" font-size="12" fill="#8b949e">Accel X bias offset (signed LSB)</text>
+
+  <rect x="20" y="910" width="860" height="30" fill="#0d1117"/>
+  <rect x="20" y="910" width="4" height="30" fill="#d29922"/>
+  <text x="46"  y="930" font-size="12" fill="#e6edf3">[42..43]</text>
+  <text x="138" y="930" font-size="12" fill="#e6edf3">2</text>
+  <text x="186" y="930" font-size="12" fill="#79c0ff" font-family="monospace">xx xx</text>
+  <text x="330" y="930" font-size="12" fill="#e6edf3">cal_ay</text>
+  <text x="570" y="930" font-size="12" fill="#8b949e">Accel Y bias offset</text>
+
+  <rect x="20" y="940" width="860" height="30" fill="#161b22"/>
+  <rect x="20" y="940" width="4" height="30" fill="#d29922"/>
+  <text x="46"  y="960" font-size="12" fill="#e6edf3">[44..45]</text>
+  <text x="138" y="960" font-size="12" fill="#e6edf3">2</text>
+  <text x="186" y="960" font-size="12" fill="#79c0ff" font-family="monospace">xx xx</text>
+  <text x="330" y="960" font-size="12" fill="#e6edf3">cal_az</text>
+  <text x="570" y="960" font-size="12" fill="#8b949e">Accel Z bias offset</text>
+
+  <rect x="20" y="970" width="860" height="30" fill="#0d1117"/>
+  <rect x="20" y="970" width="4" height="30" fill="#d29922"/>
+  <text x="46"  y="990" font-size="12" fill="#e6edf3">[46..47]</text>
+  <text x="138" y="990" font-size="12" fill="#e6edf3">2</text>
+  <text x="186" y="990" font-size="12" fill="#79c0ff" font-family="monospace">xx xx</text>
+  <text x="330" y="990" font-size="12" fill="#e6edf3">cal_gx</text>
+  <text x="570" y="990" font-size="12" fill="#8b949e">Gyro X bias offset</text>
+
+  <rect x="20" y="1000" width="860" height="30" fill="#161b22"/>
+  <rect x="20" y="1000" width="4" height="30" fill="#d29922"/>
+  <text x="46"  y="1020" font-size="12" fill="#e6edf3">[48..49]</text>
+  <text x="138" y="1020" font-size="12" fill="#e6edf3">2</text>
+  <text x="186" y="1020" font-size="12" fill="#79c0ff" font-family="monospace">xx xx</text>
+  <text x="330" y="1020" font-size="12" fill="#e6edf3">cal_gy</text>
+  <text x="570" y="1020" font-size="12" fill="#8b949e">Gyro Y bias offset</text>
+
+  <rect x="20" y="1030" width="860" height="30" fill="#0d1117"/>
+  <rect x="20" y="1030" width="4" height="30" fill="#d29922"/>
+  <text x="46"  y="1050" font-size="12" fill="#e6edf3">[50..51]</text>
+  <text x="138" y="1050" font-size="12" fill="#e6edf3">2</text>
+  <text x="186" y="1050" font-size="12" fill="#79c0ff" font-family="monospace">xx xx</text>
+  <text x="330" y="1050" font-size="12" fill="#e6edf3">cal_gz</text>
+  <text x="570" y="1050" font-size="12" fill="#8b949e">Gyro Z bias offset</text>
+
+  <!-- Checksum -->
+  <rect x="20" y="1060" width="860" height="22" fill="#1a1f2e"/>
+  <text x="30" y="1076" font-size="11" fill="#6e7681">── Integrity ──</text>
+
+  <rect x="20" y="1082" width="860" height="30" fill="#161b22"/>
+  <rect x="20" y="1082" width="4" height="30" fill="#e3b341"/>
+  <text x="46"  y="1102" font-size="12" fill="#e6edf3">[52]</text>
+  <text x="138" y="1102" font-size="12" fill="#e6edf3">1</text>
+  <text x="186" y="1102" font-size="12" fill="#79c0ff" font-family="monospace">B7</text>
+  <text x="330" y="1102" font-size="12" fill="#e6edf3">checksum</text>
+  <text x="570" y="1102" font-size="12" fill="#8b949e">XOR of bytes [00..51]</text>
+
+  <!-- Footer summary -->
+  <rect x="20" y="1122" width="860" height="38" rx="6" fill="#1f2d4a"/>
+  <text x="450" y="1138" text-anchor="middle" font-size="11" fill="#6e7681">Total: 53 bytes per frame  ·  BLE MTU ≥ 53 required (negotiate on connect)  ·  1 Hz feature payload + raw stream on separate characteristic</text>
+  <text x="450" y="1154" text-anchor="middle" font-size="11" fill="#6e7681">Byte order: big-endian  ·  Signed fields: two's complement  ·  xx xx = variable (runtime values)</text>
+
+  <!-- Legend -->
+  <rect x="20" y="1172" width="860" height="72" rx="6" fill="#0d1117" stroke="#30363d" stroke-width="0.5"/>
+  <text x="36" y="1192" font-size="11" font-weight="bold" fill="#8b949e">Color key:</text>
+  <rect x="110" y="1180" width="12" height="12" fill="#388bfd"/>
+  <text x="128" y="1191" font-size="11" fill="#8b949e">IMU raw (accel/gyro)</text>
+  <rect x="290" y="1180" width="12" height="12" fill="#a371f7"/>
+  <text x="308" y="1191" font-size="11" fill="#8b949e">Computed orientation</text>
+  <rect x="470" y="1180" width="12" height="12" fill="#3fb950"/>
+  <text x="488" y="1191" font-size="11" fill="#8b949e">Tip FSR-400 (axial)</text>
+  <rect x="620" y="1180" width="12" height="12" fill="#f78166"/>
+  <text x="638" y="1191" font-size="11" fill="#8b949e">Grip FSR-402 A/B</text>
+  <rect x="110" y="1208" width="12" height="12" fill="#bc8cff"/>
+  <text x="128" y="1219" font-size="11" fill="#8b949e">DSP / FFT outputs</text>
+  <rect x="290" y="1208" width="12" height="12" fill="#d29922"/>
+  <text x="308" y="1219" font-size="11" fill="#8b949e">IMU calibration offsets</text>
+  <rect x="470" y="1208" width="12" height="12" fill="#e3b341"/>
+  <text x="488" y="1219" font-size="11" fill="#8b949e">Checksum</text>
+</svg>
